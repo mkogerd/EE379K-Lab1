@@ -12,7 +12,7 @@ except ImportError:
         print("pyplot is not installed")
 
 
-# QUESTION ONE
+print("QUESTION ONE") # QUESTION ONE
 # Create Gaussian distributions
 mua, mub, sigma = -10, 10, 5 # means and standard deviation
 a = np.random.normal(mua, sigma, 1000)
@@ -31,7 +31,7 @@ print("Mean of B is: {m} Variance of B is {v}".format(m=np.mean(b), v=np.var(b))
 print("Mean of C is: {m} Variance of C is {v}".format(m=np.mean(c), v=np.var(c)))
 
 
-# QUESTION 2
+print("QUESTION TWO") # QUESTION TWO
 n1, n2, n3 = 10, 50, 250
 z1, z2, z3 = [], [], []
 for index in range(1000):
@@ -54,3 +54,23 @@ plt.hist(z2, 30, label="{n} draws".format(n=n2))
 plt.hist(z3, 30, label="{n} draws".format(n=n3))
 plt.legend()
 plt.show()
+
+
+print("QUESTION THREE") # QUESTION THREE
+# Generate 25,000 samples from a Gaussian distribution with mean 0 and standard deviation 5.
+mu, sigma, n = 0, 5, 25000 # mean standard deviation, and number of samples
+dist = np.random.normal(mu, sigma, n)
+plt.hist(dist, 30)
+plt.show()
+
+# Estimate the mean and standard deviation of this gaussian using elementary numpy commands
+sum = 0
+for i in range(n):
+	sum += dist[i]
+mean = sum/n
+sum = 0
+for i in range(n):
+	sum += (dist[i]-mean)**2
+dev = sum/n
+
+print("Mean is {mean}, standard deviation is {dev}".format(mean = mean, dev = dev))
