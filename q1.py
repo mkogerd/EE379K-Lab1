@@ -11,8 +11,8 @@ try:
 except ImportError:
         print("pyplot is not installed")
 
-
-print("QUESTION ONE") # QUESTION ONE
+#_____ QUESTION ONE _____#
+print("QUESTION ONE") 
 # Create Gaussian distributions
 mua, mub, sigma = -10, 10, 5 # means and standard deviation
 a = np.random.normal(mua, sigma, 1000)
@@ -30,8 +30,8 @@ print("Mean of A is: {m} Variance of A is {v}".format(m=np.mean(a), v=np.var(a))
 print("Mean of B is: {m} Variance of B is {v}".format(m=np.mean(b), v=np.var(b)))
 print("Mean of C is: {m} Variance of C is {v}".format(m=np.mean(c), v=np.var(c)))
 
-
-print("QUESTION TWO") # QUESTION TWO
+#_____ QUESTION TWO _____#
+print("QUESTION TWO") 
 n1, n2, n3 = 10, 50, 250
 z1, z2, z3 = [], [], []
 for index in range(1000):
@@ -55,10 +55,10 @@ plt.hist(z3, 30, label="{n} draws".format(n=n3))
 plt.legend()
 plt.show()
 
-
-print("QUESTION THREE") # QUESTION THREE
+#_____ QUESTION THREE _____#
+print("QUESTION THREE")
 # Generate 25,000 samples from a Gaussian distribution with mean 0 and standard deviation 5.
-mu, sigma, n = 0, 5, 25000 # mean standard deviation, and number of samples
+mu, sigma, n = 0, 5, 25000 # mean, standard deviation, and number of samples
 dist = np.random.normal(mu, sigma, n)
 plt.hist(dist, 30)
 plt.show()
@@ -71,9 +71,40 @@ mean = sum/n
 sum = 0 # Standard Deviation
 for i in range(n):
 	sum += (dist[i]-mean)**2
-dev = sum/n
+dev = np.sqrt(sum/n)
 print("Mean is {mean}, standard deviation is {dev}".format(mean = mean, dev = dev))
 
-
-print("QUESTION FOUR") # QUESTION FOUR
+#_____ QUESTION FOUR _____#
+print("QUESTION FOUR")
 # Generate 25,000 samples from a Gaussian distribution with mean 0 and standard deviation 5.
+mean = [-5, 5]
+cov = [[20, .8], [.8,30]]
+n = 25000
+x, y, = np.random.multivariate_normal(mean, cov, n).T
+plt.plot(x, y, 'x')
+plt.axis('equal')
+plt.show()
+
+# Estimate the mean and covariance matrix for this multi-dimensional data using elementary numpy commands 
+# Mean Matrix
+xy = np.vstack((x,y))   # Form 2d array with X and Y samples for easier navigation
+mean = [0, 0]           # [mean X, mean Y]
+for r in range(2):
+    sum = 0
+    for i in range(n):
+        sum += xy[r][i] # Mean summation
+    mean[r] = sum/n
+
+# Covariance Matrix
+cov = [[0, 0], [0, 0]]  # [[variance X, covariance], [covariance, variance Y]]
+for r in range(2):
+    for c in range(2):
+        sum = 0
+        for i in range(n):
+            sum += (xy[r][i]-mean[r])*(xy[c][i]-mean[c]) # Variance summation
+        cov[r][c] = sum/n
+
+print("Mean of X is {meanX}, mean of Y is {meanY}".format(meanX = mean[0], meanY = mean[1]))
+print(cov)
+
+
