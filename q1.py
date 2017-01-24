@@ -10,6 +10,10 @@ try:
         import matplotlib.pyplot as plt
 except ImportError:
         print("pyplot is not installed")
+try:
+        import pandas as pd
+except ImportError:
+        print("pandas is not installed")
 
 #_____ QUESTION ONE _____#
 print("QUESTION ONE") 
@@ -108,3 +112,12 @@ print("Mean of X is {meanX}, mean of Y is {meanY}".format(meanX = mean[0], meanY
 print(cov)
 
 
+#_____ QUESTION FIVE _____#
+
+#(a) How many patients and how many features are there?
+#   451 patients and 280 features
+#(b) What is the meaning of the first 4 features? See if you can understand what they mean.
+#   Age, Male/Female, Weight in Pounds, Height in Inches
+#(c) Are there missing values? Replace them with the average of the corresponding feature column
+df = pd.read_csv('PatientData.csv', header=None na_values=["?"])
+for col in data
