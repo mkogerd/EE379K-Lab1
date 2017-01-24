@@ -64,13 +64,16 @@ plt.hist(dist, 30)
 plt.show()
 
 # Estimate the mean and standard deviation of this gaussian using elementary numpy commands
-sum = 0
+sum = 0 # Mean
 for i in range(n):
 	sum += dist[i]
 mean = sum/n
-sum = 0
+sum = 0 # Standard Deviation
 for i in range(n):
 	sum += (dist[i]-mean)**2
 dev = sum/n
-
 print("Mean is {mean}, standard deviation is {dev}".format(mean = mean, dev = dev))
+
+
+print("QUESTION FOUR") # QUESTION FOUR
+# Generate 25,000 samples from a Gaussian distribution with mean 0 and standard deviation 5.
